@@ -17,7 +17,11 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           message: |
-            Oh no... ${{steps.check.outputs.missing}}
+            Hi ${{steps.check.outputs.missing}}!
+
+            Thank you for contributing to Directus! Before we consider your Pull Request, we ask that you sign our Contributor License Agreement (CLA). This is only required for your first Pull Request.
+
+            Please [review the CLA](https://github.com/rijkvanzanten/cla-test/), and sign it by adding your GitHub username to [the contributors.yml file](https://github.com/${{github.repository}}/blob/${{github.ref_name}}/contributors.yml). Thanks!
       - if: success()
         uses: marocchino/sticky-pull-request-comment@v2
         with:
