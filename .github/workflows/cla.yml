@@ -2,6 +2,9 @@ name: "CLA Assistant"
 on:
   pull_request:
     types: [opened,closed,synchronize]
+
+permissions:
+  pull-requests: write
     
 jobs:
   check:
@@ -9,3 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: rijkvanzanten/cla-bot@main
+      - if: success()
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          delete: true
+      - if: failure()
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          message: |
+            Oh no...
+    
