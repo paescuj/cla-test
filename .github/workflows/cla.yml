@@ -11,7 +11,16 @@ jobs:
     name: 'Check'
     runs-on: ubuntu-latest
     steps:
-      - uses: rijkvanzanten/cla-bot@main
+      - id: check
+        uses: rijkvanzanten/cla-bot@main
+    outputs:
+      missing: ${{ steps.check.outputs.missing }}
+    
+  comment:
+    name: 'Comment'
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
       - if: success()
         uses: marocchino/sticky-pull-request-comment@v2
         with:
@@ -20,5 +29,4 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           message: |
-            Oh no...
-    
+            Oh no... ${{needs.check.missing}}
