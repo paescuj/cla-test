@@ -12,19 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: rijkvanzanten/cla-bot@main
-
-  comment_success:
-    name: 'Comment'
-    runs-on: ubuntu-latest
-    if: success()
-    uses: marocchino/sticky-pull-request-comment@v2
-    delete: true
-
-  comment_failure:
-    name: 'Comment'
-    runs-on: ubuntu-latest
-    if: failure()
-    uses: marocchino/sticky-pull-request-comment@v2
-    message: |
-      Oh no...
+      - if: success()
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          delete: true
+      - if: failure()
+        uses: marocchino/sticky-pull-request-comment@v2
+        message: |
+          Oh no...
     
