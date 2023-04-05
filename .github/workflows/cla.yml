@@ -18,6 +18,7 @@ jobs:
           delete: true
       - if: failure()
         uses: marocchino/sticky-pull-request-comment@v2
-        message: |
-          Oh no...
+        with:
+          message: |
+            Oh no...
     
